@@ -64,7 +64,7 @@ const Home: React.FC = () => {
         ))}
       </div>
 
-      {bannerData && <FooterBanner footerBanner={bannerData[0]} />}
+      {bannerData[0] && <FooterBanner firstBanner={bannerData[0]} />}
     </div>
   );
 };

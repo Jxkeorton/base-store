@@ -1,16 +1,12 @@
 import React from 'react';
-import { Banner } from '@/components/HeroBanner';
+import { HeroBannerProps } from '@/components/HeroBanner';
 import Link from 'next/link'
 
 import { urlFor } from '../lib/client'
 
-interface FooterBanner {
-  footerBanner: Banner,
-};
 
 
-
-const FooterBanner: React.FC<FooterBanner>= ({footerBanner}) => {
+const FooterBanner: React.FC<HeroBannerProps>= ({firstBanner}) => {
 
   const {
     discount = "",
@@ -21,9 +17,10 @@ const FooterBanner: React.FC<FooterBanner>= ({footerBanner}) => {
     midText = "",
     product = "",
     buttonText = "",
-    image = "",
     desc= "",
-  } = footerBanner || {};
+  } = firstBanner || {};
+
+  const imageUrl = urlFor(firstBanner.image);
   
   return (
     <div className='footer-banner-container' >
@@ -43,7 +40,7 @@ const FooterBanner: React.FC<FooterBanner>= ({footerBanner}) => {
           </Link>
         </div>
 
-        <img src={urlFor(image)} className='footer-banner-image'/>
+        <img src={imageUrl} className='footer-banner-image'/>
       </div>
     </div>
   )

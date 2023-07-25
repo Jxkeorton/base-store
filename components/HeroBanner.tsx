@@ -19,7 +19,7 @@ export interface Banner {
 }
 
 
-interface HeroBannerProps {
+export interface HeroBannerProps {
   firstBanner: Banner;
 }
 
