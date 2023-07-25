@@ -13,7 +13,7 @@ const Product: React.FC<Product> = ({ product: {image, name, slug, price} }) => 
   return (
     <div>
       
-      <Link href={`/product/${slug?.current}`} >
+      <Link href={`/product/${slug.current}`} >
         <div className='product-card' >
           {image && 
             <img 

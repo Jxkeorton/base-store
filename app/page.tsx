@@ -12,11 +12,11 @@ export interface ProductData {
         _ref: string,
       }
     }
-  ]
-  name: string;
+  ],
+  name: string,
   slug: {
     current:string,
-  }
+  },
   price: number;
   details: string;
 }
