@@ -5,29 +5,28 @@ import { ProductData } from '@/app/page'
 
   interface AppContext {
     showCart: boolean;
-    cartItems: {
-      _id: number; 
-      name: string;
-      quantity: number;
-    }[];
+    cartItems: ProductData[];
     totalPrice: number;
     totalQuantities: number;
     qty: number;
     incQty: () => void;
     decQty: () => void;
     onAdd: (product: ProductData, quantity: number) => void; 
+    setShowCart: (value: boolean) => void;
+    toggleCartItemQuantity: (id: string, value: 'inc' | 'dec') => void;
+    onRemove: (product: ProductData) => void;
   }
+
+  interface Children {
+    children: React.ReactNode
+    }
   
   const Context = createContext<AppContext | null>(null);
-
-interface Children {
-    children: React.ReactNode
-  }
   
 
 export const StateContext:React.FC<Children> = ({ children }) => {
     const [showCart, setShowCart] = useState(false)
-    const [cartItems, setCartItems] = useState<any[]>([]); 
+    const [cartItems, setCartItems] = useState<ProductData[]>([]); 
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [totalQuantities, setTotalQuantities] = useState<number>(0);
     const [qty, setQty] = useState<number>(1);
@@ -45,8 +44,9 @@ export const StateContext:React.FC<Children> = ({ children }) => {
                     quantity: cartProduct.quantity ? cartProduct.quantity + quantity : quantity,
                 }
             })
+            const filteredUpdatedCartItems = updatedCartItems.filter((cartProduct) => cartProduct !== undefined) as ProductData[];
 
-            setCartItems(updatedCartItems);
+            setCartItems(filteredUpdatedCartItems);
         } else {
             product.quantity = quantity;
 
@@ -55,6 +55,37 @@ export const StateContext:React.FC<Children> = ({ children }) => {
 
         toast.success(`${qty} ${product.name} added to the cart`);
     }
+
+    const onRemove = (product: ProductData) => {
+        const foundCartItem = cartItems.find((item) => item._id === product._id);
+        if (!foundCartItem) {
+            return; 
+        }
+    
+        const newCartItems = cartItems.filter((item) => item._id !== product._id);
+    
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - (foundCartItem.price * (foundCartItem.quantity || 0)));
+        setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - (foundCartItem.quantity || 0));
+        setCartItems(newCartItems);
+    }
+
+    const toggleCartItemQuantity = (id: string, value: 'inc' | 'dec') => {
+        const updatedCartItems = cartItems.map((cartProduct) => {
+          if (cartProduct._id === id) {
+            const updatedQuantity = value === 'inc' ? (cartProduct.quantity || 0) + 1 : Math.max((cartProduct.quantity || 1) - 1, 1);
+            return { ...cartProduct, quantity: updatedQuantity };
+          }
+          return cartProduct;
+        });
+      
+        const updatedTotalQuantities = updatedCartItems.reduce((total, cartProduct) => total + (cartProduct.quantity || 0), 0);
+        const updatedTotalPrice = updatedCartItems.reduce((total, cartProduct) => total + (cartProduct.price * (cartProduct.quantity || 0)), 0);
+      
+        setCartItems(updatedCartItems);
+        setTotalQuantities(updatedTotalQuantities);
+        setTotalPrice(updatedTotalPrice);
+      };
+      
 
     const incQty = () => {
         setQty((prevQty) => prevQty + 1);
@@ -79,6 +110,9 @@ export const StateContext:React.FC<Children> = ({ children }) => {
                 incQty,
                 decQty,
                 onAdd,
+                setShowCart,
+                toggleCartItemQuantity,
+                onRemove
             }}
         >
             {children}
@@ -86,4 +120,10 @@ export const StateContext:React.FC<Children> = ({ children }) => {
     )
 }
 
-export const useStateContext = () => useContext(Context);
+export const useStateContext = () => {
+    const context = useContext(Context);
+    if (!context) {
+      throw new Error('useStateContext must be used within a StateContext Provider');
+    }
+    return context;
+  };
