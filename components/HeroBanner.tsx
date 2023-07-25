@@ -6,8 +6,11 @@ export interface Banner {
   midText: string,
   product: string,
   largeText1: string,
+  largeText2: string,
   buttonText:string,
   desc: string,
+  discount: string,
+  saleTime: string,
   image: {
     asset:{
       _ref: string

@@ -10,8 +10,6 @@ interface Product {
 
 const Product: React.FC<Product> = ({ product: {image, name, slug, price} }) => {
 
-console.log('product component', image)
-
   return (
     <div>
       
