@@ -5,10 +5,22 @@ import { ProductData } from '@/app/page';
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai'
 import Product from '../../../components/Product'
 
+import { useStateContext } from '../../../context/StateContext'
+
 const ProductDetails = ({ params }: { params: { slug: string } }) => {
     const [product, setProduct] = useState<ProductData | null>(null);
     const [similarProducts, setSimilarProducts] = useState<ProductData[]>([])
     const [index, setIndex] = useState(0);
+
+    const context = useStateContext();
+
+    if (!context) {
+      // Handle the case when context is null (optional)
+      return <div>Loading...</div>;
+    }
+
+    // Now TypeScript knows that the context is not null
+    const { qty, incQty, decQty, onAdd } = context;
 
     useEffect(() => {
         async function fetchData() {
@@ -39,22 +51,6 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
           fetchData();
         }, [params.slug]);
 
-        const handleMinusClick = () => {
-            // Implement the logic to decrease the quantity here
-          };
-        
-          // Click handler for plus button
-          const handlePlusClick = () => {
-            // Implement the logic to increase the quantity here
-          };
-
-          const handleNumClick = () => {
-            // Implement the logic to increase the quantity here
-          };
-
-          const addToCart = () => {
-            // Implement the logic to increase the quantity here
-          };
 
           const buyNow = () => {
             // Implement the logic to increase the quantity here
@@ -86,13 +82,13 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
                 <div className='quantity' >
                     <h3>Quantity: </h3>
                     <p className='quantity-desc' >
-                        <span className='minus' onClick={handleMinusClick} ><AiOutlineMinus /></span>
-                        <span className='num' onClick={handleNumClick} >0</span>
-                        <span className='plus' onClick={handlePlusClick} ><AiOutlinePlus /></span>
+                        <span className='minus' onClick={decQty} ><AiOutlineMinus /></span>
+                        <span className='num'  >{qty}</span>
+                        <span className='plus' onClick={incQty} ><AiOutlinePlus /></span>
                     </p>
                 </div>
                 <div className='buttons' >
-                    <button type='button' className='add-to-cart' onClick={addToCart} >Add To Cart</button>
+                    <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)} >Add To Cart</button>
                     <button type='button' className='buy-now' onClick={buyNow} >Buy Now</button>
                 </div>
             

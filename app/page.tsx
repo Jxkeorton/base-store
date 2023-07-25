@@ -19,6 +19,7 @@ export interface ProductData {
   },
   price: number;
   details: string;
+  quantity?: number;
 }
 
 
