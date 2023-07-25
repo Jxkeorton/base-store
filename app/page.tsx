@@ -4,12 +4,21 @@ import { Product, FooterBanner, HeroBanner } from '../components';
 import { client } from '../lib/client';
 import { Banner } from '@/components/HeroBanner';
 
-interface ProductData {
-  Image: string;
+export interface ProductData {
+  _id: string,
+  image: [
+    {
+      asset:{
+        _ref: string,
+      }
+    }
+  ]
   name: string;
-  Slug: string;
-  Price: number;
-  Details: string;
+  slug: {
+    current:string,
+  }
+  price: number;
+  details: string;
 }
 
 
@@ -39,7 +48,6 @@ const Home: React.FC = () => {
     }
     fetchData();
   }, []);
-  
 
   return (
     <div>
@@ -52,7 +60,7 @@ const Home: React.FC = () => {
 
       <div className='products-container'>
       {products.map((product) => (
-          product.name
+          <Product key={product._id} product={product} />
         ))}
       </div>
 

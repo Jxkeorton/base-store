@@ -1,9 +1,35 @@
 import React from 'react'
+import Link from 'next/link';
+import { ProductData } from '@/app/page';
 
-const Product = () => {
+import { urlFor } from '../lib/client'
+
+interface Product {
+  product: ProductData
+}
+
+const Product: React.FC<Product> = ({ product: {image, name, slug, price} }) => {
+
+console.log('product component', image)
+
   return (
     <div>
-      Product
+      
+      <Link href={`/product/${slug?.current}`} >
+        <div className='product-card' >
+          {image && 
+            <img 
+              src={urlFor(image[0])} 
+              width={250}
+              height={250}
+              className='product-image'
+            />
+          }
+
+          <p className='product-name'>{name}</p>
+          <p className='product-price' >£{price}</p>
+        </div>
+      </Link>
     </div>
   )
 }
