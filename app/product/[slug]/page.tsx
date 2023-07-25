@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react'
 import { client, urlFor } from '../../../lib/client'
 import { ProductData } from '@/app/page';
-import {AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar} from 'react-icons/ai'
+import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai'
 import Product from '../../../components/Product'
 
 const ProductDetails = ({ params }: { params: { slug: string } }) => {
@@ -80,16 +80,6 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
             
             <div className='product-detail-desc' >
                 <h1>{product.name}</h1>
-                <div className='reviews' >
-                    <div>
-                        <AiFillStar />
-                        <AiFillStar/>
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiOutlineStar />
-                    </div>
-                    <p>(20)</p>
-                </div>
                 <h4>Details: </h4>
                 <p>{product.details}</p>
                 <p className='price'>£{product.price}</p>
