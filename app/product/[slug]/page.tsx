@@ -7,10 +7,11 @@ import Product from '../../../components/Product'
 
 import { useStateContext } from '../../../context/StateContext'
 
+
 const ProductDetails = ({ params }: { params: { slug: string } }) => {
     const [product, setProduct] = useState<ProductData | null>(null);
     const [similarProducts, setSimilarProducts] = useState<ProductData[]>([])
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState<number>(0);
 
     const context = useStateContext();
 
@@ -20,7 +21,7 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
     }
 
     // Now TypeScript knows that the context is not null
-    const { qty, incQty, decQty, onAdd } = context;
+    const { qty, incQty, decQty, onAdd, setShowCart } = context;
 
     useEffect(() => {
         async function fetchData() {
@@ -52,9 +53,14 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
         }, [params.slug]);
 
 
-          const buyNow = () => {
-            // Implement the logic to increase the quantity here
-          };
+        const handlebuyNow = () => {
+          if (product) {
+            onAdd(product, qty);
+            setShowCart(true);
+          } else {
+            console.warn('Product is null. Cannot add to cart.');
+          }
+        };
 
   return (
     <div>
@@ -90,7 +96,7 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
                 </div>
                 <div className='buttons' >
                     <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)} >Add To Cart</button>
-                    <button type='button' className='buy-now' onClick={buyNow} >Buy Now</button>
+                    <button type='button' className='buy-now' onClick={handlebuyNow} >Buy Now</button>
                 </div>
             
             </div>

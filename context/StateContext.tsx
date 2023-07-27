@@ -15,6 +15,9 @@ import { ProductData } from '@/app/page'
     setShowCart: (value: boolean) => void;
     toggleCartItemQuantity: (id: string, value: 'inc' | 'dec') => void;
     onRemove: (product: ProductData) => void;
+    setCartItems: React.Dispatch<React.SetStateAction<ProductData[]>>;
+    setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
+    setTotalQuantities: React.Dispatch<React.SetStateAction<number>>;
   }
 
   interface Children {
@@ -112,7 +115,10 @@ export const StateContext:React.FC<Children> = ({ children }) => {
                 onAdd,
                 setShowCart,
                 toggleCartItemQuantity,
-                onRemove
+                onRemove,
+                setCartItems,
+                setTotalPrice,
+                setTotalQuantities
             }}
         >
             {children}
