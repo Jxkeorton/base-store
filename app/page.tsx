@@ -55,8 +55,8 @@ const Home: React.FC = () => {
       {bannerData[0] && <HeroBanner firstBanner={bannerData[0]} />}
 
       <div className='products-heading'>
-        <h2>Best Selling Products</h2>
-        <p>Variety of BASE equipment</p>
+        <h2>Products</h2>
+        <p>BASE equipment</p>
       </div>
 
       <div className='products-container'>
