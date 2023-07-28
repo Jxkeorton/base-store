@@ -7,7 +7,6 @@ const Footer = () => {
       <p>2023 all rights reserved</p>
       <p className='icons' >
         <AiFillInstagram />
-        <AiOutlineTwitter />
       </p>
     </div>
   )

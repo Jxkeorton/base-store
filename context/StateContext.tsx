@@ -5,6 +5,7 @@ import { ProductData } from '@/app/page'
 
   interface AppContext {
     showCart: boolean;
+    showMenu: boolean;
     cartItems: ProductData[];
     totalPrice: number;
     totalQuantities: number;
@@ -13,6 +14,7 @@ import { ProductData } from '@/app/page'
     decQty: () => void;
     onAdd: (product: ProductData, quantity: number) => void; 
     setShowCart: (value: boolean) => void;
+    setShowMenu: (value: boolean) => void;
     toggleCartItemQuantity: (id: string, value: 'inc' | 'dec') => void;
     onRemove: (product: ProductData) => void;
     setCartItems: React.Dispatch<React.SetStateAction<ProductData[]>>;
@@ -29,6 +31,7 @@ import { ProductData } from '@/app/page'
 
 export const StateContext:React.FC<Children> = ({ children }) => {
     const [showCart, setShowCart] = useState(false)
+    const [showMenu, setShowMenu] = useState(false)
     const [cartItems, setCartItems] = useState<ProductData[]>([]); 
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [totalQuantities, setTotalQuantities] = useState<number>(0);
@@ -106,6 +109,7 @@ export const StateContext:React.FC<Children> = ({ children }) => {
         <Context.Provider
             value= {{
                 showCart,
+                showMenu,
                 cartItems,
                 totalPrice,
                 totalQuantities,
@@ -114,6 +118,7 @@ export const StateContext:React.FC<Children> = ({ children }) => {
                 decQty,
                 onAdd,
                 setShowCart,
+                setShowMenu,
                 toggleCartItemQuantity,
                 onRemove,
                 setCartItems,
