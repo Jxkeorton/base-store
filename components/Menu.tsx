@@ -26,12 +26,12 @@ const Menu = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href='/contact'>
-                            <p>Contact</p>
+                        <Link href='/contact' onClick={() => setShowMenu(false)} >
+                            <p>Contact</p> 
                         </Link>
                     </li>
                     <li>
-                        <Link href='/about'>
+                        <Link href='/about' onClick={() => setShowMenu(false)} >
                             <p>About</p>
                         </Link>
                     </li>
