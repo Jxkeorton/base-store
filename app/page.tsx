@@ -64,8 +64,6 @@ const Home: React.FC = () => {
           <Product key={product._id} product={product} />
         ))}
       </div>
-
-      {bannerData[0] && <FooterBanner firstBanner={bannerData[0]} />}
     </div>
   );
 };

@@ -3,6 +3,8 @@ import React from 'react'
 import Link from 'next/link'
 import { AiOutlineShopping } from 'react-icons/ai'
 import { FaBars } from 'react-icons/fa'
+import Image from 'next/image';
+import logo from '../public/logo-svg.svg'
 
 import Cart from './Cart'
 import Menu from './Menu'
@@ -19,11 +21,16 @@ const Navbar = () => {
   return (
     <div className='navbar-container' >
       <p className='logo' >
-        <Link href='/' >
-          BASE Gear
-        </Link>
+          <Link href='/'>
+            <Image
+              height={200}
+              width={200}
+              priority
+              src='/logo-svg.svg'
+              alt='logo'
+            />
+          </Link>
       </p>
-
       <div className='icons-container' >
         <button type='button' className='cart-icon' onClick={() => setShowCart(true)} >
           <AiOutlineShopping />

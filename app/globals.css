@@ -34,6 +34,10 @@ width: 100%;
   margin: 6px 18px;
   position: relative;
 }
+.logo {
+  /* Add this to remove margin around the logo */
+  margin-left: 4%;
+}
 .marquee-text{
   font-size: 29px;
   font-weight: 600;
