@@ -82,7 +82,7 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
             </div>
             
             <div className='product-detail-desc' >
-                <h1>{product.name}</h1>
+                <h2>{product.name}</h2>
                 <h4>Details: </h4>
                 <p>{product.details}</p>
                 <p className='price'>£{product.price}</p>

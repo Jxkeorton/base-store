@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { Product, FooterBanner, HeroBanner } from '../components';
+import { Product, HeroBanner } from '../components';
 import { client } from '../lib/client';
 import { Banner } from '@/components/HeroBanner';
 

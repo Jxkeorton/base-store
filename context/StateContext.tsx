@@ -2,6 +2,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import { ProductData } from '@/app/page'
+import { Banner } from '@/components/HeroBanner'
+import { client, urlFor } from '../lib/client';
 
   interface AppContext {
     showCart: boolean;
@@ -123,7 +125,7 @@ export const StateContext:React.FC<Children> = ({ children }) => {
                 onRemove,
                 setCartItems,
                 setTotalPrice,
-                setTotalQuantities
+                setTotalQuantities,
             }}
         >
             {children}

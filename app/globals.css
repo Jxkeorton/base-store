@@ -11,6 +11,20 @@ body, * {
   width: 0px;
 }
 
+@font-face {
+  font-family: 'hypik';
+  src: url('/fonts/hypik.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font-family: 'hypik';
+  font-style: normal;
+  letter-spacing: 2px;
+  color: #e10000ff;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -805,5 +819,54 @@ margin-top: 160px;
 .btn-container{
   width: 300px;
   margin: auto;
+}
+
+/* contact page styles  */
+.contact-container{
+    padding: 10px 40px;
+    background-color: #dcdcdc;
+    border-radius: 15px;
+    position: relative;
+    height: 500px;
+    line-height: 1.5;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #333;
+    text-align: center;
+}
+
+.contact-text-container {
+  margin-top: 30%;
+}
+
+.about-text-container {
+ max-width: 400px;
+ text-align: left;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.contact-title-text {
+  font-weight: bold;
+}
+
+.phone-icon {
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #e10000ff;
+}
+
+.email {
+  color: #e10000ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero-banner-container a:hover {
+  text-decoration: underline;
 }
 }
