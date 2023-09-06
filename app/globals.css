@@ -49,7 +49,6 @@ width: 100%;
   position: relative;
 }
 .logo {
-  /* Add this to remove margin around the logo */
   margin-left: 4%;
 }
 .marquee-text{
@@ -83,11 +82,6 @@ width: 100%;
  span.text-red {
     -webkit-text-stroke: 1px #f02d34;
     margin-left: 6px;
-}
-.logo{
-  color: gray;
-  font-size: 18px;
-
 }
 .cart-icon{
   font-size: 25px;
@@ -280,8 +274,6 @@ text-align: end;
 }
 .footer-banner-image{
   position: absolute;
-  /* top: -35%;
-  left: 8%; */
   top: -25%;
   left: 25%;
 }
@@ -309,7 +301,6 @@ text-align: end;
   right: 0;
   top: 0;
   z-index: 100;
-  /* will-change: transform; */
   transition: all 1s ease-in-out;
 
 }
@@ -536,7 +527,7 @@ padding: 30px 65px;
   margin-top: 30px;
   color:#f02d34;
 }
-.price .old-price, .product-price .old-price, .price .old-price{
+.price .old-price, .product-price .old-price{
   color: gray;
   text-decoration: line-through;
 }

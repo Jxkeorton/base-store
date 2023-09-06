@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { AiOutlineShopping } from 'react-icons/ai'
 import { FaBars } from 'react-icons/fa'
 import Image from 'next/image';
-import logo from '../public/logo-svg.svg'
 
 import Cart from './Cart'
 import Menu from './Menu'

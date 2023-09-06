@@ -35,7 +35,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({firstBanner}) => {
         <img src={imageUrl} alt='headphones' className='hero-banner-image' />
 
         <div>
-          <Link href={`/product/${firstBanner.product}`} >
+          <Link href={`/product/tailgate-kit`} >
             <button type="button" >{firstBanner.buttonText}</button>
           </Link>
 
