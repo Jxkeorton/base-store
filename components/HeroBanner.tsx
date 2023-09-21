@@ -40,7 +40,6 @@ const HeroBanner: React.FC<HeroBannerProps> = ({firstBanner}) => {
           </Link>
 
           <div className='desc'>
-            <h5>Description</h5>
             <p>{firstBanner.desc}</p>
           </div>
         </div>
