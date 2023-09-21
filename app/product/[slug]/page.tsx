@@ -16,7 +16,7 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
     const context = useStateContext();
 
     if (!context) {
-      // Handle the case when context is null (optional)
+      // Handle the case when context is null
       return <div>Loading...</div>;
     }
 
@@ -24,6 +24,8 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
     const { qty, incQty, decQty, onAdd, setShowCart } = context;
 
     useEffect(() => {
+      window.scrollTo(0, 0);
+
         async function fetchData() {
             try {
               // Fetch the specific product using the slug
@@ -86,18 +88,27 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
                 <h4>Details: </h4>
                 <p>{product.details}</p>
                 <p className='price'>£{product.price}</p>
-                <div className='quantity' >
+        
+                {!product.soldOut ? (
+                  <div>
+                  <div className='quantity' >
                     <h3>Quantity: </h3>
                     <p className='quantity-desc' >
                         <span className='minus' onClick={decQty} ><AiOutlineMinus /></span>
                         <span className='num'  >{qty}</span>
                         <span className='plus' onClick={incQty} ><AiOutlinePlus /></span>
                     </p>
-                </div>
-                <div className='buttons' >
-                    <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)} >Add To Cart</button>
+                  </div>
+                  <div className='buttons'>
+                    <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>Add To Cart</button>
                     <button type='button' className='buy-now' onClick={handlebuyNow} >Buy Now</button>
-                </div>
+                  </div>
+                  </div>
+                ) : (
+                  <div className='buttons'>
+                    <h3>Sold Out</h3>
+                  </div>
+                )}
             
             </div>
         </div>}

@@ -14,7 +14,7 @@ const About = () => {
                 <br />
 
                 <h3>Theres more to us...</h3>
-                <p>Guess what? We're not just here to sell you stuff. Need help choosing the right gear? Want to share a crazy jump story? We're all ears and ready to chat</p>
+                <p>We're not just here to sell you stuff. Need help choosing the right gear? Want to share a crazy jump story? We're all ears and ready to chat</p>
             </div>
             
         </div> 
