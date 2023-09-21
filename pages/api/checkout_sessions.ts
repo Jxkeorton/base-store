@@ -20,7 +20,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             submit_type: 'pay',
             mode: 'payment',
             payment_method_types: ['card'],
-            billing_address_collection: 'auto',
+            billing_address_collection: 'required',
+            shipping_address_collection: {
+              allowed_countries: ['GB'], // Define the allowed countries for shipping
+            },
             shipping_options: [
                 { shipping_rate: 'shr_1NYTx1ES6bGARFv6ikjIeFRD'},
                 { shipping_rate: 'shr_1NYTxaES6bGARFv6TiS7vClS'},
