@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { AiOutlineShopping } from 'react-icons/ai'
 import { FaBars } from 'react-icons/fa'
 import Image from 'next/image';
+import Logo from '../dist/logo-png.webp'
 
 import Cart from './Cart'
 import Menu from './Menu'
@@ -12,20 +13,14 @@ import { useStateContext } from '@/context/StateContext'
 const Navbar = () => {
   const {showCart, setShowCart, totalQuantities, setShowMenu, showMenu} = useStateContext();
 
-  const handleButtonClick = () => {
-    // Your logic for handling the button click goes here
-    console.log('Button clicked!');
-  };
-
   return (
     <div className='navbar-container' >
       <p className='logo' >
           <Link href='/'>
             <Image
-              height={200}
-              width={200}
+              height={100}
               priority
-              src='/logo-svg.svg'
+              src={Logo}
               alt='logo'
             />
           </Link>
