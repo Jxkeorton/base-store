@@ -25,8 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               allowed_countries: ['GB'], // Define the allowed countries for shipping
             },
             shipping_options: [
-                { shipping_rate: 'shr_1NYTx1ES6bGARFv6ikjIeFRD'},
-                { shipping_rate: 'shr_1NYTxaES6bGARFv6TiS7vClS'},
+                { shipping_rate: 'shr_1NYG4iES6bGARFv6cKmlruHG'},
             ],
             line_items: (req.body as CartItem[]).map((item) => {
                 const img = (item.image[0]).asset._ref;
