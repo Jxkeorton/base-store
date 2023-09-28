@@ -22,6 +22,7 @@ const Product: React.FC<Product> = ({ product: {image, name, slug, price, soldOu
                 width={250}
                 height={250}
                 className="productImage"
+                alt={name}
               />
               {soldOut && <div className="soldOutLabel">Sold Out</div>}
             </>
