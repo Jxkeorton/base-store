@@ -26,12 +26,12 @@ const Navbar = () => {
           </Link>
       </p>
       <div className='icons-container' >
-        <button type='button' className='cart-icon' onClick={() => setShowCart(true)} >
+        <button type='button' className='cart-icon' aria-label='view shopping cart' onClick={() => setShowCart(true)} >
           <AiOutlineShopping />
           <span className='cart-item-qty'>{totalQuantities}</span>
         </button>
 
-        <button type='button' className='cart-icon' onClick={() => setShowMenu(true)} >
+        <button type='button' aria-label='menu' className='cart-icon' onClick={() => setShowMenu(true)} >
           <FaBars />
         </button>
       </div>
