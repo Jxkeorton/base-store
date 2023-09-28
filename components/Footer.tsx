@@ -7,7 +7,7 @@ const Footer = () => {
     <div className='footer-container' >
       <p>2023 all rights reserved</p>
       <p className='icons' >
-        <Link href='https://www.instagram.com/jakeorton_/' >
+        <Link href='https://www.instagram.com/traversebase/' >
           <AiFillInstagram />
         </Link>
       </p>
