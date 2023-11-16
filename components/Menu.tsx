@@ -26,6 +26,11 @@ const Menu = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link href='/used-gear' onClick={() => setShowMenu(false)} >
+                            <p>Used Gear</p>
+                        </Link>
+                    </li>
+                    <li>
                         <Link href='/contact' onClick={() => setShowMenu(false)} >
                             <p>Contact</p> 
                         </Link>
@@ -35,6 +40,7 @@ const Menu = () => {
                             <p>About</p>
                         </Link>
                     </li>
+                    
                 </ul>
             </div>
 

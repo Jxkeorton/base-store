@@ -861,4 +861,19 @@ margin-top: 160px;
   z-index: 1;
   font-weight: bold; 
 }
+
+/*Used Gear Page */
+
+.no-used-gear {
+  font-weight: bold;
+  color: #324d67;
+  font-size: 1.5rem;
+  padding-top: 150px;
+  padding-bottom: 150px;
+
+}
+.used-gear-link {
+  color: #e10000ff;
+  font-weight: bold;
+}
 }

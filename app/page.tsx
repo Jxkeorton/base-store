@@ -21,6 +21,7 @@ export interface ProductData {
   details: string;
   quantity?: number;
   soldOut: boolean;
+  category: string;
 }
 
 

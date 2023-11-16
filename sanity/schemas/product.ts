@@ -41,5 +41,10 @@ export default {
             title: 'Sold Out',
             type: 'boolean', 
         },
+        {
+            name: 'category',
+            title: 'Category',
+            type: 'string',
+        },
     ],
 };
