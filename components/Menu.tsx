@@ -31,6 +31,11 @@ const Menu = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link href='/canopies' onClick={() => setShowMenu(false)} >
+                            <p>Canopies</p>
+                        </Link>
+                    </li>
+                    <li>
                         <Link href='/contact' onClick={() => setShowMenu(false)} >
                             <p>Contact</p> 
                         </Link>
