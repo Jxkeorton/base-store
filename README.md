@@ -1,6 +1,6 @@
 # UK Cliff Jumping Map
 
-![amiresponsive](public/assets/amiresponsive.png)
+![amiresponsive](public/images/amiresponsive.png)
 
 [Live Site](https://www.traversebase.co.uk/)
 
