@@ -1,4 +1,4 @@
-# UK Cliff Jumping Map
+# Traverse e-commerce store
 
 ![amiresponsive](public/images/amiresponsive.png)
 
