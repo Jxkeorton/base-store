@@ -1,4 +1,4 @@
-# UK Cliff Jumping Map
+# Traverse e-commerce store
 
 ![amiresponsive](public/images/amiresponsive.png)
 
@@ -29,7 +29,9 @@
 
 ## User Experience (UX)
 
-Users can explore the site from the Home page where they are greeted with a banner of a popular product. After scrolling down all the unfiltered products are revealed in a easy to view grid like fashion. 
+Users can explore the site from the Home page where they are greeted with a banner of a popular product. After scrolling down all the unfiltered products are revealed in a easy to view grid like fashion.
+Clicking a product will lead to the product page where more in depth information can be found out about it. They have the choice to 'buy now' or 'add to cart' depending on there preference.
+The cart is easy to access in the top right which is common practice for ecommerce sites.
 
 #### Client Goals
 
