@@ -22,27 +22,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
 .main-container{
-max-width: 1400px; 
-margin: auto;
-width: 100%;
-
-}
-.layout{
-  padding: 10px;
-}
-
-/* Navbar styles */
-
-.navbar-container{
-  display: flex;
-  justify-content: space-between;
-  margin: 6px 18px;
-  position: relative;
-}
-.logo {
-  margin-left: 4%;
+  margin: auto;
+  width: 100%;
 }
 .marquee-text{
   font-size: 29px;
@@ -75,19 +57,6 @@ width: 100%;
  span.text-red {
     -webkit-text-stroke: 1px #f02d34;
     margin-left: 6px;
-}
-.cart-icon{
-  font-size: 25px;
-  color: gray;
-  cursor: pointer;
-  position: relative;
-  transition: transform .4s ease;
-  border: none;
-  background-color: transparent;
-  margin-left: 8px;
-}
-.cart-icon:hover{
-  transform: scale(1.1,1.1);
 }
 
 .icons-container {
@@ -145,70 +114,6 @@ width: 100%;
   font-weight: 800;
   margin-top: 6px;
   color: black;
-}
-
-/* hero banner styles */
-
-.hero-banner-container{
-  padding: 100px 40px;
-  background-color: #dcdcdc;
-  border-radius: 15px;
-  position: relative;
-  height: 500px;
-  line-height: 0.9; 
-  width: 100%;
-
-}
-.hero-banner-container .beats-solo{
-  font-size: 20px;
-}
-.hero-banner-container button{
-   border-radius: 15px;
-  padding: 10px 16px;
-  background-color: #f02d34;
-  color: white;
-  border: none;
-  margin-top: 40px;
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
-  z-index:10000 !important;
-}
-
-.hero-banner-container h3{
-  font-size: 4rem;
-  margin-top: 4px;
-}
-.hero-banner-container h1{
-  color: white;
-  font-size: 10em;
-  margin-left: -20px;
-  text-transform: uppercase;
-}
-.hero-banner-image{
-  position: absolute;
-  top: 0%;
-  right:20%;
-  width: 450px;
-  height: 450px;
-}
-
-
-.desc{
-position: absolute;
-right: 10%;
-bottom: 5%;
-width: 300px;
-line-height: 1.3;
-display: flex;
-flex-direction: column;
-color: #324d67;
-
-}
-.desc p{
-  color: #5f5f5f;
-  font-weight: 100;
-  text-align: end;
 }
 .desc h5{
   margin-bottom: 12px;
@@ -305,28 +210,6 @@ color: #324d67;
   position: relative;
 }
 
-/* Menu styles */
-
-.menu-list {
-  list-style: none;
-  padding: 0;
-}
-
-.menu-list li {
-  margin-bottom: 10px;
-}
-
-.menu-list li a {
-  text-decoration: none;
-  color: #000;
-  font-size: 18px;
-}
-
-.menu-list li a:hover {
-  color: #f02d34;
-  font-weight: bold;
-}
-
 /* footer styles */
 
 .footer-container{
@@ -347,6 +230,8 @@ color: #324d67;
   display: flex;
   gap: 10px;
 }
+
+/* Cart */
  .cart-heading{
   display: flex;
   align-items: center;
@@ -661,15 +546,6 @@ margin-top: 160px;
 }
 
 @media screen and (max-width:800px) {
-  .hero-banner-container{
-    height: 560px;
-  }
-  .hero-banner-image{
-    width: 77%;
-    height: 62%;
-    top: -2%;
-    right: -6%;
-  }
   .footer-banner-container{
     height: 560px;
     margin-top: 80px;
@@ -679,43 +555,6 @@ margin-top: 160px;
     left: 30%;
     top: 6%;
     height: 56%
-  }
-  .banner-desc .left h3{
-    font-weight: 900;
-    font-size: 50px;
-    margin-left: 5px;
-  }
-  .banner-desc .left p{
-    margin:18px;
-  }
-  .banner-desc .right h3{
-    font-size: 45px;
-  }
-  .banner-desc .right p{
-    font-size: 18px;
-  }
-  .banner-desc .right .company-desc{
-    font-size: 14px;
-  }
-  .banner-desc{
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .hero-banner-container{
-    line-height: 1.3;
-  }
-  .hero-banner-container h1{
-    font-size: 50px;
-  }
- .hero-banner-container h3{
-    font-size: 40px;
-  }
-  .hero-banner-container button{
-    margin-top: 90px;
-    z-index: 10000;
-  }
-  .desc{
-   bottom: 60px;
   }
   .product-detail-container{
     flex-wrap: wrap;
@@ -758,8 +597,6 @@ margin-top: 160px;
 .top{
   flex-wrap: wrap;
   gap: 10px;
-
-
 }
 .item-desc .bottom{
   margin-top: 30px;
@@ -801,6 +638,7 @@ margin-top: 160px;
 .btn-container{
   width: 300px;
   margin: auto;
+}
 }
 
 /* contact page styles  */
@@ -848,9 +686,6 @@ margin-top: 160px;
   font-weight: bold;
 }
 
-.hero-banner-container a:hover {
-  text-decoration: underline;
-}
 .soldOutLabel {
   position: absolute;
   top: 0;
@@ -876,4 +711,211 @@ margin-top: 160px;
   color: #e10000ff;
   font-weight: bold;
 }
+
+/* New Navbar Styles */
+.hamburger,
+.cart-icon{
+  font-size: 1.5rem;
+  color: gray;
+  cursor: pointer;
+  position: relative;
+  transition: transform .4s ease;
+  border: none;
+  background-color: transparent;
+  margin-left: 8px;
+}
+.cart-icon:hover,
+.hamburger:hover{
+  transform: scale(1.1,1.1);
+  color: black;
+}
+.navbar-icon-container {
+  margin-right: 8%;
+}
+header {
+  margin: 1rem;
+}
+.identity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar {
+  background-color:  #f02d34;
+  position: absolute;
+  /* a higher z-index put navbar above hamburger */
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* style the bar in one cell and the close button in the other */
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  /* animate slide up/down */
+  transform: translateY(-100%);
+  transition: transform 0.2s ease;
+}
+.navbar ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 100%;
+}
+.navbar:target,
+.navbar.active {
+  transform: translateY(0);
+}
+.fa-logo {
+  margin-right: auto;
+  font-size: 6rem;
+  padding: 0.5rem 1rem 0 1rem;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 1rem 1rem 0rem 1rem;
+  text-align: center;
+}
+.navbar span {
+  font-weight: bold;
+}
+.navbar a:hover {
+  color: black;
+}
+@media (min-width: 1270px) {
+  header {
+    margin: 1rem auto;
+    padding-bottom: 1rem;
+  }
+  .identity {
+    margin-bottom: -120px;
+  }
+  .navbar {
+    background-color:  transparent;
+    padding: 0;
+    position: static;
+    height: auto;
+    transform: translateY(0);
+    justify-content: space-between;
+  }
+  .navbar span {
+    font-size: 1.5rem;
+  }
+  .hamburger {
+    display: none;
+  }
+  .navbar .close {
+    display: none;
+  }
+  .navbar ul {
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+  .navbar span {
+    color: black;
+    text-decoration: none;
+    display: inline-block; 
+    padding: 1rem; 
+    position: relative;
+    transition: color 0.3s ease; 
+  }
+  .navbar span:hover {
+    color: #f02d34;
+  }
+  .navbar span::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    height: 2px;
+    background-color: #f02d34;
+    transform-origin: left; /* Ensure scaling starts from the left */
+    transform: scaleX(0); 
+    transition: transform 0.3s ease;
+  }
+  .navbar span:hover::after {
+    transform: scaleX(1); 
+  }
+  .navbar span::before {
+    content: "\a";
+    white-space: pre;
+  }
+  .cart-icon {
+    padding: 0;
+    font-size: 2rem;
+    margin-left: auto;
+    transition: transform .4s ease;
+    z-index: 1000;
+  }
+  .cart-icon:hover {
+    transform: scale(1.1,1.1);
+    color: black;
+  }
+  .fa-logo {
+    margin-left: 70px;
+  }
+}
+.navbar-subtitle {
+  height: auto;
+  background-color: black;
+  padding: 5px 0; 
+  box-sizing: border-box; 
+}
+
+.navbar-subtitle p {
+  font-size: 0.9rem;
+  color: white;
+  text-align: center;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* New Hero Banner Styles */
+
+.hero-banner-container {
+  height: 400px;
+  position: relative; 
+}
+
+.banner-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+  position: relative; 
+}
+
+.banner-content button {
+  margin-top: 20px;
+  background-color: black;
+  border: black;
+  padding: 1rem;
+  width: 200px;
+
+  color: whitesmoke;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.banner-content button:hover {
+  cursor: pointer;
+  background-color: grey;
+}
+
+.hero-banner-container h1 {
+  color: whitesmoke;
+  font-size: 4rem;
+}
+
+.hero-banner-image {
+  height: 400px;
 }

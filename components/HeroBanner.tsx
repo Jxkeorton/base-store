@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import {urlFor} from '../lib/client'
+import HeroImage from '../assets/images/HeroImage.webp';
 
 export interface Banner {
   smallText: string,
@@ -27,24 +28,24 @@ const HeroBanner: React.FC<HeroBannerProps> = ({firstBanner}) => {
   const imageUrl = urlFor(firstBanner.image);
 
   return (
-    <div className='hero-banner-container'>
-      <div>
-        <p className='beats-solo' >{firstBanner.product}</p>
-        <h3>{firstBanner.midText}</h3>
-        <h1>{firstBanner.largeText1}</h1>
-        <img src={imageUrl} alt='headphones' className='hero-banner-image' />
+    <div className='hero-banner-container' style={{ backgroundImage: `url(/images/HeroImage.webp)`, backgroundSize: 'cover' }}>
 
-        <div>
-          <Link href={`/product/tailgate-kit`} >
-            <button type="button" >{firstBanner.buttonText}</button>
+      <div className='banner-content'>
+        <div className='banner-text'>
+          <p className='beats-solo' >{firstBanner.product}</p>
+          <h1>{firstBanner.midText}</h1>
+          <Link href={`/product/tailgate-kit`}>
+            <button type="button">{firstBanner.buttonText}</button>
           </Link>
-
-          <div className='desc'>
-            <p>{firstBanner.desc}</p>
-          </div>
+          
         </div>
-      </div>
 
+        <div className='banner-product'>
+          <img src={imageUrl} alt='headphones' className='hero-banner-image' />
+        </div>
+
+        
+      </div>
     </div>
   )
 }

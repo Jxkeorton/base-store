@@ -9,10 +9,11 @@ interface Children {
 
 const Layout:React.FC<Children> = ({children}) => {
   return (
-    <div className='layout' >
+    <div>
       <header>
         <Navbar />
       </header>
+      <div className='navbar-subtitle' ><p>The First UK BASE Store - More products soon</p></div>
       <main className='main-container' >
         {children}
       </main>
