@@ -884,38 +884,120 @@ header {
 .hero-banner-container {
   height: 400px;
   position: relative; 
-}
-
-.banner-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; 
+}
+
+.banner-content {
+  background-color: rgba(0, 0, 0, 0.581);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80%; 
+  width: 70%;
   position: relative; 
 }
 
 .banner-content button {
   margin-top: 20px;
-  background-color: black;
+  background-color: grey;
   border: black;
   padding: 1rem;
   width: 200px;
 
   color: whitesmoke;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 650;
+  font-style: normal;
 }
 
 .banner-content button:hover {
   cursor: pointer;
-  background-color: grey;
+  background-color: black;
 }
+
 
 .hero-banner-container h1 {
   color: whitesmoke;
   font-size: 4rem;
+  font-weight: bold;
+}
+
+.hero-banner-container p {
+  color: whitesmoke;
+  font-weight: 400;
 }
 
 .hero-banner-image {
   height: 400px;
+}
+
+/* Hero Banner Media Queries */
+@media screen and (max-width: 768px) {
+  .hero-banner-container {
+    height: 300px;
+  }
+
+  .banner-content {
+    width: 90%;
+  }
+
+  .banner-content button {
+    width: 150px;
+  }
+
+  .hero-banner-container h1 {
+    font-size: 2rem;
+  }
+
+  .hero-banner-image {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-banner-container {
+    height: 200px;
+  }
+
+  .banner-content {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 1rem;
+  }
+
+  .banner-content button {
+    width: 100px;
+    height: 30px;
+    font-size: 0.8rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-banner-container h1 {
+    font-size: 1.25rem;
+  }
+
+  .hero-banner-container p {
+    font-size: x-small;
+  }
+
+  .hero-banner-image {
+    height: 200px;
+  }
+
+  /* Nav bar media querie */
+  .fa-logo {
+    height: 50px;
+    width: auto;
+    font-size: 4rem;
+  }
+
+  .navbar-subtitle p {
+    font-size: 0.5rem;
+  }
 }

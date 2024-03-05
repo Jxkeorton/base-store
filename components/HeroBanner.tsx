@@ -32,8 +32,8 @@ const HeroBanner: React.FC<HeroBannerProps> = ({firstBanner}) => {
 
       <div className='banner-content'>
         <div className='banner-text'>
-          <p className='beats-solo' >{firstBanner.product}</p>
           <h1>{firstBanner.midText}</h1>
+          <p>{firstBanner.smallText}</p>
           <Link href={`/product/tailgate-kit`}>
             <button type="button">{firstBanner.buttonText}</button>
           </Link>
@@ -41,7 +41,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({firstBanner}) => {
         </div>
 
         <div className='banner-product'>
-          <img src={imageUrl} alt='headphones' className='hero-banner-image' />
+          <img src={imageUrl} alt={firstBanner.midText} className='hero-banner-image' />
         </div>
 
         
