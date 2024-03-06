@@ -57,7 +57,7 @@ const Navbar = () => {
         <ul className='menu-list'>
           <li onClick={handleItemClick}>
             <Link href='/'>
-              <span>All</span>
+              <span>Home</span>
             </Link>
           </li>
           <li onClick={handleItemClick}>
