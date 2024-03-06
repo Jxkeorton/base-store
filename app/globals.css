@@ -79,62 +79,6 @@ a {
   font-weight: 600;
 
 }
-.products-container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-  width: 100%;
-}
-
-/* Product card styles */
-
-.product-card{
- cursor: pointer;
-  transform: scale(1, 1);
-  transition: transform 0.5s ease;
- color: #324d67;
-
-}
-.product-card:hover{
-  transform: scale(1.1,1.1)
-}
-.product-image{
-  border-radius: 15px;
-  background-color: #ebebeb;
-  transform: scale(1, 1);
-  transition: transform 0.5s ease;
-}
-
-.product-name{
-  font-weight: 500;
-}
-.product-price{
-  font-weight: 800;
-  margin-top: 6px;
-  color: black;
-}
-.desc h5{
-  margin-bottom: 12px;
-  font-weight: 700;
-  font-size: 16px;
-  align-self: flex-end;
-}
-.products-heading{
-  text-align: center;
-  margin: 40px 0px;
- color: #324d67;
-
-}
-.products-heading h2{
-  font-size: 40px;
-  font-weight: 800;
-}
-.products-heading p{
-  font-size: 16px;
-  font-weight: 200;
-}
 .footer-banner-container{
   padding: 100px 40px;
   background-color: #f02d34;
@@ -428,7 +372,7 @@ padding: 30px 65px;
   color: #f02d34;
   cursor: pointer;
   width: 200px;
-   transform: scale(1, 1);
+  transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
 .buttons .add-to-cart:hover{
@@ -445,7 +389,7 @@ padding: 30px 65px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-   transform: scale(1, 1);
+  transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
 .buttons .buy-now:hover{
@@ -453,7 +397,7 @@ padding: 30px 65px;
 }
 .quantity-desc{
   border: 1px solid gray;
-padding: 6px;
+  padding: 6px;
 }
 .quantity-desc span{
   font-size: 16px;
@@ -470,7 +414,6 @@ padding: 6px;
 }
 .quantity-desc .plus{
   color: rgb(49, 168, 49);
-
 }
 
 .maylike-products-wrapper{
@@ -499,8 +442,8 @@ padding: 6px;
 }
 .success, .cancel{
   width: 1000px;
-margin: auto;
-margin-top: 160px;
+  margin: auto;
+  margin-top: 160px;
   background-color: #dcdcdc;
   padding: 50px;
   border-radius: 15px;
@@ -902,8 +845,9 @@ header {
 
 .banner-content button {
   margin-top: 20px;
-  background-color: grey;
+  background-color: #f02d34;
   border: black;
+  border-radius: 30px;
   padding: 1rem;
   width: 200px;
 
@@ -999,5 +943,96 @@ header {
 
   .navbar-subtitle p {
     font-size: 0.5rem;
+  }
+}
+
+/* New Product Card Styles */ 
+
+.products-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
+}
+.product-card{
+  cursor: pointer;
+  transform: scale(1, 1);
+  transition: transform 0.5s ease;
+  color: #324d67;
+ }
+ .product-card:hover{
+   transform: scale(1.1,1.1)
+ }
+ .product-image{
+   border-radius: 15px;
+   background-color: #ebebeb;
+   transform: scale(1, 1);
+   transition: transform 0.5s ease;
+ }
+ .product-name{
+   font-weight: 500;
+ }
+ .product-price{
+   font-weight: 800;
+   margin-top: 6px;
+   color: black;
+ }
+ .desc h5{
+   margin-bottom: 12px;
+   font-weight: 700;
+   font-size: 16px;
+   align-self: flex-end;
+ }
+ .products-heading{
+   text-align: center;
+   margin: 40px 0px;
+   color: #324d67;
+ }
+ .products-heading h2{
+   font-size: 40px;
+   font-weight: 800;
+   color:#f02d34;
+
+ }
+ .products-heading p{
+   font-size: 16px;
+   font-weight: 400;
+ }
+
+ @media only screen and (max-width: 520px) {
+
+  .product-card {
+    flex-basis: calc(50% - 10px); /* Ensure each card takes up 50% of the container width with gap */
+    margin-bottom: 15px; /* Adds space between product cards */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+  }
+
+  .product-image {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+  }
+
+  .product-name,
+  .product-price {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  .desc h5 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .products-heading h2 {
+    font-size: 30px;
+    margin: 3px 0;
+  }
+
+  .products-heading p {
+    font-size: 14px;
+    margin-bottom: 20px;
   }
 }

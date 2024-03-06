@@ -11,26 +11,22 @@ interface Product {
 const Product: React.FC<Product> = ({ product: {image, name, slug, price, soldOut} }) => {
 
   return (
-    <div>
-      
+    <div className='product-card' >
       <Link href={`/product/${slug.current}`} scroll={true}>
-        <div className='product-card' >
         {image && (
             <>
               <img
                 src={urlFor(image[0])}
                 width={250}
                 height={250}
-                className="productImage"
+                className="product-image"
                 alt={name}
               />
               {soldOut && <div className="soldOutLabel">Sold Out</div>}
             </>
           )}
-
           <p className='product-name'>{name}</p>
           <p className='product-price' >£{price}</p>
-        </div>
       </Link>
     </div>
   )
