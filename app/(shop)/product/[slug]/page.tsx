@@ -1,7 +1,12 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Product from '@/components/Product'
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
+import Container from '@/components/Container'
+import ProductCard from '@/components/ProductCard'
 import ProductDetails from '@/components/ProductDetails'
+import SectionHeading from '@/components/SectionHeading'
+import { clean } from '@/lib/format'
 import { getProduct, getProductSlugs, getRelatedProducts } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 
@@ -18,11 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return {}
 
   return {
-    title: product.name,
-    description: product.details,
+    title: clean(product.name),
+    description: clean(product.details),
     openGraph: {
-      title: product.name,
-      description: product.details,
+      title: clean(product.name),
+      description: clean(product.details),
       images: product.image?.[0] ? [urlFor(product.image[0]).width(1200).url()] : undefined,
     },
   }
@@ -33,21 +38,32 @@ export default async function ProductPage({ params }: Props) {
   const product = await getProduct(slug)
   if (!product) notFound()
 
-  const related = await getRelatedProducts(product._id)
+  const related = (await getRelatedProducts(product._id)).slice(0, 4)
 
   return (
-    <div>
+    <Container className="py-8 md:py-12">
+      <Link
+        href="/#gear"
+        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-ink-700 hover:text-brand-600"
+      >
+        <ArrowLeft className="size-4" />
+        All gear
+      </Link>
+
       <ProductDetails product={product} />
-      <div className='maylike-products-wrapper'>
-        <h2>You May Also Like</h2>
-        <div className='marquee'>
-          <div className='maylike-products-container track'>
+
+      {related.length > 0 && (
+        <section className="mt-20 border-t border-border pt-12 md:mt-28">
+          <SectionHeading eyebrow="Keep looking" title="More gear" className="mb-8" />
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4 lg:gap-x-6">
             {related.map((item) => (
-              <Product key={item._id} product={item} />
+              <li key={item._id}>
+                <ProductCard product={item} />
+              </li>
             ))}
-          </div>
-        </div>
-      </div>
-    </div>
+          </ul>
+        </section>
+      )}
+    </Container>
   )
 }

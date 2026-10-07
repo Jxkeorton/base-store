@@ -1,12 +1,7 @@
-/*
- * Design system entry point.
- * Tailwind's preflight is deliberately NOT imported yet: the legacy stylesheet (legacy.css)
- * still styles the pages and relies on browser defaults. Add
- *   @import "tailwindcss/preflight.css" layer(base);
- * once the legacy rules are gone (phase 4).
- */
+/* Design system entry point: Tailwind v4 + Traverse Base tokens. */
 @layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 @import "tw-animate-css";
 
@@ -96,8 +91,62 @@
 }
 
 @layer base {
-  /* `@theme inline` tokens are not emitted as CSS variables, so spell the stack out here. */
+  /* `@theme inline` tokens are not emitted as CSS variables, so spell the stacks out here. */
   body {
     font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-barlow), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+}
+
+/* ---- Signature: the lean ----------------------------------------------------------------
+ * The slant from the logo's lettering, reused as angled cuts and underlines. */
+@utility clip-slant-b {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
+}
+@utility clip-slant-t {
+  clip-path: polygon(0 2.5rem, 100% 0, 100% 100%, 0 100%);
+}
+
+/* ---- Motion: one entrance sequence, stagger via --delay -------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@utility animate-rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -10,6 +10,7 @@ import { MAX_QUANTITY } from '@/lib/constants'
 export interface CartItem {
   _id: string
   name: string
+  slug?: string
   price: number
   image: SanityImage
   quantity: number
@@ -48,6 +49,7 @@ export const useCartStore = create<CartState>()(
               {
                 _id: product._id,
                 name: product.name,
+                slug: product.slug.current,
                 price: product.price,
                 image: product.image[0],
                 quantity: clamp(quantity),
