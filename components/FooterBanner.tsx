@@ -2,7 +2,7 @@ import React from 'react';
 import { HeroBannerProps } from '@/components/HeroBanner';
 import Link from 'next/link'
 
-import { urlFor } from '../lib/client'
+import { urlFor } from '@/lib/sanity/image'
 
 
 
@@ -20,7 +20,7 @@ const FooterBanner: React.FC<HeroBannerProps>= ({firstBanner}) => {
     desc= "",
   } = firstBanner || {};
 
-  const imageUrl = urlFor(firstBanner.image);
+  const imageUrl = urlFor(firstBanner.image).url();
   
   return (
     <div className='footer-banner-container' >
@@ -40,7 +40,7 @@ const FooterBanner: React.FC<HeroBannerProps>= ({firstBanner}) => {
           </Link>
         </div>
 
-        <img src={imageUrl} className='footer-banner-image'/>
+        <img src={imageUrl} alt={midText} className='footer-banner-image'/>
       </div>
     </div>
   )

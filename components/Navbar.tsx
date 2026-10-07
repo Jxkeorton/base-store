@@ -7,10 +7,12 @@ import Image from 'next/image';
 import Logo from '../public/logo-png.webp'
 
 import Cart from './Cart'
-import { useStateContext } from '@/context/StateContext'
+import { selectTotalQuantity, useCartStore } from '@/lib/cart-store'
 
 const Navbar = () => {
-  const {showCart, setShowCart, totalQuantities } = useStateContext();
+  const showCart = useCartStore((s) => s.isOpen);
+  const setShowCart = useCartStore((s) => s.setOpen);
+  const totalQuantities = useCartStore(selectTotalQuantity);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   const handleItemClick = () => {

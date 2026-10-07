@@ -1,22 +1,22 @@
 import React from 'react'
 import Link from 'next/link';
-import { ProductData } from '@/app/page';
+import Image from 'next/image'
+import type { Product as ProductType } from '@/lib/types'
+import { urlFor } from '@/lib/sanity/image'
 
-import { urlFor } from '../lib/client'
-
-interface Product {
-  product: ProductData
+interface Props {
+  product: ProductType
 }
 
-const Product: React.FC<Product> = ({ product: {image, name, slug, price, soldOut} }) => {
+const Product: React.FC<Props> = ({ product: {image, name, slug, price, soldOut} }) => {
 
   return (
     <div className='product-card' >
       <Link href={`/product/${slug.current}`} scroll={true}>
-        {image && (
+        {image?.[0] && (
             <>
-              <img
-                src={urlFor(image[0])}
+              <Image
+                src={urlFor(image[0]).width(500).url()}
                 width={250}
                 height={250}
                 className="product-image"

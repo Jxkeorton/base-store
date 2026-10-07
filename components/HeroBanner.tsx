@@ -1,22 +1,6 @@
 import Link from 'next/link'
-import {urlFor} from '../lib/client'
-
-export interface Banner {
-  smallText: string,
-  midText: string,
-  product: string,
-  largeText1: string,
-  largeText2: string,
-  buttonText:string,
-  desc: string,
-  discount: string,
-  saleTime: string,
-  image: {
-    asset:{
-      _ref: string
-    }
-  }
-}
+import { urlFor } from '@/lib/sanity/image'
+import type { Banner } from '@/lib/types'
 
 
 export interface HeroBannerProps {
@@ -24,7 +8,7 @@ export interface HeroBannerProps {
 }
 
 const HeroBanner: React.FC<HeroBannerProps> = ({firstBanner}) => {
-  const imageUrl = urlFor(firstBanner.image);
+  const imageUrl = urlFor(firstBanner.image).url();
 
   return (
     <div className='hero-banner-container' style={{ backgroundImage: `url(/images/HeroImage.webp)`, backgroundSize: 'cover' }}>

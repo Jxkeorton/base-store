@@ -1,34 +1,46 @@
-import React, {useRef} from 'react'
+'use client'
+import React, {useRef, useState} from 'react'
 import Link from 'next/link'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import toast from 'react-hot-toast'
 
 
-import { useStateContext } from '@/context/StateContext'
-import { urlFor } from '../lib/client'
+import { selectSubtotal, selectTotalQuantity, useCartStore } from '@/lib/cart-store'
+import { urlFor } from '@/lib/sanity/image'
 
 const Cart = () => {
   const cartRef = useRef<HTMLDivElement>(null);
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove} = useStateContext();
+  const [checkingOut, setCheckingOut] = useState(false);
+  const cartItems = useCartStore((s) => s.items);
+  const totalPrice = useCartStore(selectSubtotal);
+  const totalQuantities = useCartStore(selectTotalQuantity);
+  const setShowCart = useCartStore((s) => s.setOpen);
+  const setQuantity = useCartStore((s) => s.setQuantity);
+  const onRemove = useCartStore((s) => s.remove);
 
   const handleCheckout = async () => {
-    const response = await fetch('/api/checkout_sessions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(cartItems),
-    });
+    setCheckingOut(true);
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cartItems.map((i) => ({ id: i._id, quantity: i.quantity })) }),
+      });
+      const data = await response.json();
 
-    if(response.status === 500) return;
+      if (!response.ok || !data.url) {
+        toast.error(data.error ?? 'Something went wrong. Please try again.');
+        setCheckingOut(false);
+        return;
+      }
 
-    const data = await response.json();
-    console.log('Parsed JSON data:', data);
-
-    toast.loading('Redirecting...');
-
-    window.location.href = data.url;
+      toast.loading('Redirecting...');
+      window.location.href = data.url;
+    } catch {
+      toast.error('Could not reach checkout. Please try again.');
+      setCheckingOut(false);
+    }
   }
 
   return (
@@ -61,9 +73,9 @@ const Cart = () => {
         )}
 
         <div className='product-container' >
-          {cartItems.length >= 1 && cartItems.map((item, index) => (
+          {cartItems.length >= 1 && cartItems.map((item) => (
             <div className='product' key={item._id} >
-              <img src={urlFor(item?.image[0])} className='cart-product-image' />
+              <img src={urlFor(item.image).width(360).url()} alt={item.name} className='cart-product-image' />
               <div className='item-desc' >
                 <div className='flex top'>
                   <h5>{item.name}</h5>
@@ -72,12 +84,12 @@ const Cart = () => {
                 <div className='flex bottom'>
                   <div>
                     <p className='quantity-desc' >
-                        <span className='minus' onClick={() => toggleCartItemQuantity(item._id, 'dec')} ><AiOutlineMinus /></span>
+                        <span className='minus' onClick={() => setQuantity(item._id, item.quantity - 1)} ><AiOutlineMinus /></span>
                         <span className='num'  >{item.quantity}</span>
-                        <span className='plus' onClick={() => toggleCartItemQuantity(item._id, 'inc')} ><AiOutlinePlus /></span>
+                        <span className='plus' onClick={() => setQuantity(item._id, item.quantity + 1)} ><AiOutlinePlus /></span>
                     </p>
                   </div>
-                  <button type='button' className='remove-item' onClick={() => onRemove(item)} >
+                  <button type='button' className='remove-item' onClick={() => onRemove(item._id)} >
                     <TiDeleteOutline />
                   </button>
                 </div>
@@ -92,8 +104,8 @@ const Cart = () => {
               <h3>£{totalPrice}</h3>
             </div>
             <div className='btn-container' >
-              <button type='button' className='btn' onClick={handleCheckout} >
-                Pay with Stripe
+              <button type='button' className='btn' onClick={handleCheckout} disabled={checkingOut} >
+                {checkingOut ? 'Please wait...' : 'Pay with Stripe'}
               </button>
             </div>
           </div>
