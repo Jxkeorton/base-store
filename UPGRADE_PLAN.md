@@ -1,5 +1,19 @@
 # Base Store: Upgrade and Redesign Plan
 
+> **Status: complete (phases 0 to 5).** Results are in [docs/baseline/README.md](docs/baseline/README.md).
+>
+> | Phase | Outcome |
+> |---|---|
+> | 0. Safety net | Repo cleaned, ESLint fixed, baseline captured |
+> | 1. Framework | Next 16, React 19, Sanity 6, Stripe 23, ESLint 9 |
+> | 2. Architecture | Server-side data, price lookup at checkout, persisted cart, verified order confirmation |
+> | 3. Design system | Tailwind 4 tokens, next/font, shadcn/ui |
+> | 4. Redesign | New look, same palette |
+> | 5. Hardening | 29 unit tests, 34 browser tests, README, launch checks |
+>
+> Deliberately left out: Stripe webhook and orders database, Sentry, Sanity typegen, CI. The text below is the
+> original plan as written before the work started.
+
 ## 1. Current state (audit)
 
 | Area | Today | Latest | Notes |

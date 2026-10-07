@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -29,6 +29,14 @@ export const navLinks = [
 export default function Header() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  // The current-page state is only computed on the client. The prerendered HTML for "/" is served
+  // from Vercel's ISR cache and was observed without it, and React does not patch mismatched attributes
+  // during hydration. false on the server and during hydration, true afterwards, so the markup always matches.
+  const hydrated = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
 
   // Close the mobile menu if the viewport grows past the breakpoint where it is replaced by the nav bar.
   useEffect(() => {
@@ -38,7 +46,8 @@ export default function Header() {
     return () => mq.removeEventListener('change', close)
   }, [])
 
-  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
+  const isActive = (href: string) =>
+    hydrated && (href === '/' ? pathname === '/' : pathname.startsWith(href))
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">

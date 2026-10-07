@@ -11,15 +11,44 @@ export const metadata: Metadata = { title: 'Order confirmed', robots: { index: f
 
 type Props = { searchParams: Promise<{ session_id?: string }> }
 
+function CouldNotConfirm() {
+  return (
+    <Container className="grid min-h-[60vh] place-items-center py-16">
+      <div className="max-w-lg text-center">
+        <h1 className="font-display text-5xl leading-[0.95] font-extrabold tracking-tight uppercase italic text-ink-900">
+          We couldn&apos;t confirm your order
+        </h1>
+        <p className="mt-4 text-lg text-ink-700">
+          If you completed payment, Stripe will have emailed you a receipt. If it hasn&apos;t arrived, email{' '}
+          <a href="mailto:traversebase@gmail.com" className="font-semibold text-brand-600 underline underline-offset-4">
+            traversebase@gmail.com
+          </a>{' '}
+          and we&apos;ll sort it out.
+        </p>
+        <Button asChild size="lg" className="mt-8">
+          <Link href="/">Back to the shop</Link>
+        </Button>
+      </div>
+    </Container>
+  )
+}
+
 export default async function Success({ searchParams }: Props) {
   const { session_id } = await searchParams
   if (!session_id) redirect('/')
 
   // Only show the confirmation for a real, paid Checkout Session.
-  const session = await getStripe()
-    .checkout.sessions.retrieve(session_id)
-    .catch(() => null)
-  if (!session || session.payment_status !== 'paid') redirect('/')
+  let session: Awaited<ReturnType<ReturnType<typeof getStripe>['checkout']['sessions']['retrieve']>>
+  try {
+    session = await getStripe().checkout.sessions.retrieve(session_id)
+  } catch (error) {
+    // Stripe says the session doesn't exist: nothing to confirm.
+    if ((error as { statusCode?: number }).statusCode === 404) redirect('/')
+    // Anything else (outage, misconfiguration): the customer may well have paid, so don't dump them on the home page.
+    console.error('Could not retrieve Checkout Session', error)
+    return <CouldNotConfirm />
+  }
+  if (session.payment_status !== 'paid') redirect('/')
 
   const email = session.customer_details?.email
 
