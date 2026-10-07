@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Product } from '@/components'
+import Product from '@/components/Product'
 import { getProducts } from '@/lib/sanity/queries'
 
 export const metadata: Metadata = { title: 'Used Gear' }

@@ -1,11 +1,19 @@
 import './globals.css'
+import './legacy.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { Toaster } from 'react-hot-toast'
+import { Barlow_Condensed, Inter } from 'next/font/google'
+import { Toaster } from '@/components/ui/sonner'
 import { Analytics } from '@vercel/analytics/react'
 import CartHydrator from '@/components/CartHydrator'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+// Display face for headings in the redesign (phase 4); loaded now so the tokens are in place.
+const barlow = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: ['600', '700', '800'],
+  variable: '--font-barlow',
+  display: 'swap',
+})
 
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
@@ -21,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${barlow.variable}`}>
         <CartHydrator />
         {children}
         <Toaster />

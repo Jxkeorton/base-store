@@ -1,4 +1,5 @@
-import { Product, HeroBanner } from '@/components'
+import Product from '@/components/Product'
+import HeroBanner from '@/components/HeroBanner'
 import { getHeroBanner, getProducts } from '@/lib/sanity/queries'
 
 export default async function Home() {
