@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+import Stripe from 'stripe';
+
 
 interface CartItem {
     name: string;
@@ -15,11 +16,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log(req.body)
 
     try {
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
-        const params = {
+        const params: Stripe.Checkout.SessionCreateParams = {
             submit_type: 'pay',
             mode: 'payment',
-            payment_method_types: ['card'],
+            allowed_payment_method_types: ['card'],
             billing_address_collection: 'required',
             shipping_address_collection: {
               allowed_countries: ['GB'], // Define the allowed countries for shipping

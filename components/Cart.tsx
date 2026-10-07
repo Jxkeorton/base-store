@@ -7,15 +7,12 @@ import toast from 'react-hot-toast'
 
 import { useStateContext } from '@/context/StateContext'
 import { urlFor } from '../lib/client'
-import getStripe from '@/lib/getStripe'
 
 const Cart = () => {
   const cartRef = useRef<HTMLDivElement>(null);
   const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove} = useStateContext();
 
   const handleCheckout = async () => {
-    const stripe = await getStripe()
-
     const response = await fetch('/api/checkout_sessions', {
       method: 'POST',
       headers: {
@@ -31,7 +28,7 @@ const Cart = () => {
 
     toast.loading('Redirecting...');
 
-    stripe?.redirectToCheckout({sessionId: data.id});
+    window.location.href = data.url;
   }
 
   return (

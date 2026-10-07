@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useState} from 'react'
+import React, {use, useEffect, useState} from 'react'
 import { client, urlFor } from '../../../lib/client'
 import { ProductData } from '@/app/page';
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai'
@@ -8,7 +8,8 @@ import Product from '../../../components/Product'
 import { useStateContext } from '../../../context/StateContext'
 
 
-const ProductDetails = ({ params }: { params: { slug: string } }) => {
+const ProductDetails = (props: { params: Promise<{ slug: string }> }) => {
+    const params = use(props.params);
     const [product, setProduct] = useState<ProductData | null>(null);
     const [similarProducts, setSimilarProducts] = useState<ProductData[]>([])
     const [index, setIndex] = useState<number>(0);
