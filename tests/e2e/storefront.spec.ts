@@ -67,13 +67,19 @@ test.describe('storefront', () => {
   })
 
   test('the success page redirects home for a session id Stripe does not know', async ({ page }) => {
-    test.skip(!process.env.STRIPE_SECRET_KEY, 'needs STRIPE_SECRET_KEY to ask Stripe')
+    test.skip(
+      !process.env.STRIPE_SECRET_KEY && !process.env.BASE_URL,
+      'needs a Stripe key: set STRIPE_SECRET_KEY locally, or run against a deployed site with BASE_URL',
+    )
     await page.goto('/success?session_id=cs_test_not_real')
     await expect(page).toHaveURL('/')
   })
 
   test('the success page never crashes when Stripe cannot be reached', async ({ page }) => {
-    test.skip(!!process.env.STRIPE_SECRET_KEY, 'only meaningful without a Stripe key')
+    test.skip(
+      !!process.env.STRIPE_SECRET_KEY || !!process.env.BASE_URL,
+      'only meaningful for a local build without a Stripe key',
+    )
     await page.goto('/success?session_id=cs_test_anything')
     await expect(page.getByRole('heading', { name: /couldn.t confirm your order/i })).toBeVisible()
   })

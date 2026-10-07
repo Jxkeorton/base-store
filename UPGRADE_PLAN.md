@@ -9,7 +9,7 @@
 > | 2. Architecture | Server-side data, price lookup at checkout, persisted cart, verified order confirmation |
 > | 3. Design system | Tailwind 4 tokens, next/font, shadcn/ui |
 > | 4. Redesign | New look, same palette |
-> | 5. Hardening | 29 unit tests, 34 browser tests, README, launch checks |
+> | 5. Hardening | 29 unit tests, 20 browser tests (desktop and mobile), README, launch checks |
 >
 > Deliberately left out: Stripe webhook and orders database, Sentry, Sanity typegen, CI. The text below is the
 > original plan as written before the work started.
