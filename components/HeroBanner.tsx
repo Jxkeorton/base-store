@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import {urlFor} from '../lib/client'
-import HeroImage from '../assets/images/HeroImage.webp';
 
 export interface Banner {
   smallText: string,

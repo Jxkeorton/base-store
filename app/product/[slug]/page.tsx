@@ -15,14 +15,6 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
 
     const context = useStateContext();
 
-    if (!context) {
-      // Handle the case when context is null
-      return <div>Loading...</div>;
-    }
-
-    // Now TypeScript knows that the context is not null
-    const { qty, incQty, decQty, onAdd, setShowCart } = context;
-
     useEffect(() => {
       window.scrollTo(0, 0);
 
@@ -53,6 +45,14 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
       
           fetchData();
         }, [params.slug]);
+
+    if (!context) {
+      // Handle the case when context is null
+      return <div>Loading...</div>;
+    }
+
+    // Now TypeScript knows that the context is not null
+    const { qty, incQty, decQty, onAdd, setShowCart } = context;
 
 
         const handlebuyNow = () => {

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { AiOutlineShopping } from 'react-icons/ai'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import Image from 'next/image';
-import Logo from '../dist/logo-png.webp'
+import Logo from '../public/logo-png.webp'
 
 import Cart from './Cart'
 import { useStateContext } from '@/context/StateContext'
